@@ -1,0 +1,388 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <meta name="description" content="Vuexy admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities.">
+    <meta name="keywords" content="admin template, Vuexy admin template, dashboard template, flat admin template, responsive admin template, web app">
+    <meta name="author" content="PIXINVENT">
+    <title>To-Do - Vuexy - Bootstrap HTML admin template</title>
+    <link rel="apple-touch-icon" href="{% static 'app-assets/images/ico/apple-icon-120.png' %}">
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'app-assets/images/ico/favicon.ico' %}">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600" rel="stylesheet">
+
+    <!-- BEGIN: Vendor CSS-->
+    <link rel="stylesheet" type="text/css" href="{% static 'app-assets/vendors/css/vendors.min.css' %}">
+    <!-- END: Vendor CSS-->
+
+    <!-- BEGIN: Theme CSS-->
+    <link rel="stylesheet" type="text/css" href="{% static 'app-assets/css/bootstrap.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'app-assets/css/bootstrap-extended.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'app-assets/css/colors.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'app-assets/css/components.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'app-assets/css/themes/dark-layout.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'app-assets/css/themes/semi-dark-layout.css' %}">
+
+    <!-- BEGIN: Page CSS-->
+    <link rel="stylesheet" type="text/css" href="{% static 'app-assets/css/core/menu/menu-types/vertical-menu.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'app-assets/css/core/colors/palette-gradient.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'app-assets/css/pages/app-todo.css' %}">
+    <!-- END: Page CSS-->
+
+    <!-- BEGIN: Custom CSS-->
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/style.css' %}">
+    <!-- END: Custom CSS-->
+
+</head>
+<body class="vertical-layout vertical-menu-modern dark-layout content-left-sidebar todo-application navbar-floating footer-static" data-open="click" data-menu="vertical-menu-modern" data-col="content-left-sidebar" data-layout="dark-layout">
+
+<div class="content-area-wrapper">
+    <a  href="{%  url 'logout' %}" class="float-right btn btn-danger mr-1 mb-1 waves-effect waves-lights">Logout</a>
+
+<nav>
+  <div class="row mt-2">
+                    <blockquote class=" card blockquote col-8">
+                        <div class="media" id="description">
+                            <div class="media-left pr-1 mt-2">
+                                <img class="media-object img-xl" src="{{ request.session.avatar }}" style="max-width: 100%; min-width: 64px; min-height: 64px; max-height: 100%; border-radius: 50%;" alt="Generic placeholder image">
+                                </div>
+                                <div class="media-body mt-2">
+                                    Tüm Notlarım..
+                                </div>
+                            </div>
+                            <footer class="blockquote-footer text-right">
+                                <cite title="Source Title"><a href="">{{ request.session.userName }}</a></cite>
+                            </footer>
+                        </blockquote>
+                    </div>
+</nav>
+    <div class="sidebar-left">
+        <div class="sidebar">
+            <div class="sidebar-content todo-sidebar d-flex">
+                <div class="todo-app-menu">
+                    <div class="form-group text-center add-task">
+                        <button type="button" class="btn btn-primary btn-block my-1 waves-effect waves-light" data-toggle="modal" data-target="#addTaskModal">Add Task</button>
+                            </div>
+                            <div class="sidebar-menu-list ps ps--active-y">
+                                <hr>
+                                <h5 class="mt-2 mb-1 pt-25">Filters</h5>
+                                <div class="list-group list-group-filters font-medium-1">
+                                    <a href="{% url 'home' %}" class="list-group-item list-group-item-action border-0"><i class="font-medium-5 feather icon-home mr-50"></i> All Tasks</a>
+                                    <a href="{% url 'completed' %}" class="list-group-item list-group-item-action border-0"><i class="font-medium-5 feather icon-check mr-50"></i> Completed</a>
+                                    <a href="{% url 'trashed' %}" class="list-group-item list-group-item-action border-0 active"><i class="font-medium-5 feather icon-trash mr-50"></i> Trashed</a>
+                                </div>
+                                <hr>
+                                <h5 class="mt-2 mb-1 pt-25">Labels</h5>
+                                <div class="list-group list-group-labels font-medium-1">
+                                    <a href="#" class="list-group-item list-group-item-action border-0 d-flex align-items-center"><span class="bullet bullet-primary mr-1"></span> Frontend</a>
+                                    <a href="#" class="list-group-item list-group-item-action border-0 d-flex align-items-center"><span class="bullet bullet-warning mr-1"></span> Backend</a>
+                                    <a href="#" class="list-group-item list-group-item-action border-0 d-flex align-items-center"><span class="bullet bullet-success mr-1"></span> Doc</a>
+                                    <a href="#" class="list-group-item list-group-item-action border-0 d-flex align-items-center"><span class="bullet bullet-danger mr-1"></span> Bug</a>
+                                </div>
+                            <div class="ps__rail-x" style="left: 0px; bottom: 0px;"><div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div></div><div class="ps__rail-y" style="top: 0px; height: 450px; right: 0px;"><div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 384px;"></div></div></div>
+                        </div>
+                    </div>
+                    <!-- Modal -->
+                    <div class="modal fade" id="addTaskModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="display: none;">
+                        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-sm" role="document">
+                            <div class="modal-content">
+                                <section class="todo-form">
+                                    <form id="form-add-todo" class="todo-input" method="POST">
+                                        {%  csrf_token %}
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Add Task</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">×</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="todo-item-action ml-auto">
+
+                                                <div class="dropdown todo-item-label">
+                                                    <i class="dropdown-toggle mr-0 mb-1 feather icon-tag" id="todoLabel" data-toggle="dropdown" aria-expanded="false">
+                                                    </i>
+                                                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="todoLabel" x-placement="top-end" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, -12px, 0px);" x-out-of-boundaries="">
+                                                        <div class="dropdown-item">
+                                                            <div class="vs-checkbox-con">
+                                                                <input type="checkbox" name="frontend" data-color="primary" data-value="Frontend">
+                                                                <span class="vs-checkbox">
+                                                                    <span class="vs-checkbox--check">
+                                                                        <i class="vs-icon feather icon-check mr-0"></i>
+                                                                    </span>
+                                                                </span>
+                                                                <span>Frontend</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="dropdown-item">
+                                                            <div class="vs-checkbox-con">
+                                                                <input type="checkbox" name="backend" data-color="warning" data-value="Backend">
+                                                                <span class="vs-checkbox">
+                                                                    <span class="vs-checkbox--check">
+                                                                        <i class="vs-icon feather icon-check mr-0"></i>
+                                                                    </span>
+                                                                </span>
+                                                                <span>Backend</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="dropdown-item">
+                                                            <div class="vs-checkbox-con">
+                                                                <input type="checkbox" name="doc" data-color="success" data-value="Doc">
+                                                                <span class="vs-checkbox">
+                                                                    <span class="vs-checkbox--check">
+                                                                        <i class="vs-icon feather icon-check mr-0"></i>
+                                                                    </span>
+                                                                </span>
+                                                                <span>Doc</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="dropdown-item">
+                                                            <div class="vs-checkbox-con">
+                                                                <input type="checkbox" name="bugs" data-color="danger" data-value="Bug">
+                                                                <span class="vs-checkbox">
+                                                                    <span class="vs-checkbox--check">
+                                                                        <i class="vs-icon feather icon-check mr-0"></i>
+                                                                    </span>
+                                                                </span>
+                                                                <span>Bug</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                                <input type="text" name="notbaslik" class="new-todo-item-title form-control" placeholder="Title">
+                                            <br>
+                                            <br>
+
+                                                <textarea class="new-todo-item-desc form-control" name="noticerik" rows="3" placeholder="Add description"></textarea>
+                                        </div>
+                                        <div class="modal-footer">
+
+                                            <button type="submit" name="addtask" class="btn btn-primary waves-effect waves-light">Add Task</button>
+
+                                            <fieldset class="form-group position-relative has-icon-left mb-0">
+                                                <button type="button" class="btn btn-outline-light waves-effect waves-light" data-dismiss="modal"><i class="feather icon-x d-block d-lg-none"></i>
+                                                    <span class="d-none d-lg-block">Cancel</span></button>
+                                            </fieldset>
+                                        </div>
+                                    </form>
+                                </section>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="content-right">
+                <div class="content-wrapper">
+                    <div class="content-header row">
+                    </div>
+                    <div class="content-body">
+                        <div class="app-content-overlay"></div>
+                        <div class="todo-app-area">
+                            <div class="todo-app-list-wrapper">
+                                <div class="todo-app-list">
+                                    <div class="app-fixed-search">
+                                        <div class="sidebar-toggle d-block d-lg-none"><i class="feather icon-menu"></i></div>
+                                        <fieldset class="form-group position-relative has-icon-left m-0">
+                                            <input type="text" class="form-control" id="todo-search" placeholder="Search..">
+                                            <div class="form-control-position">
+                                                <i class="feather icon-search"></i>
+                                            </div>
+                                        </fieldset>
+                                    </div>
+                                    <div class="todo-task-list list-group ps ps--active-y">
+                                        <ul class="todo-task-list-wrapper media-list">
+                                            {% for note in notes %}
+                                                {% if note.to_dict.finished == False %}
+                                            <li class="todo-item" data-toggle="modal" data-target="#editTaskModal" style="">
+                                                {% endif %}
+                                                {% if note.to_dict.finished == True %}
+                                                    <li class="todo-item completed" data-toggle="modal" data-target="#editTaskModal" style="">
+                                                {%  endif %}
+
+                                                <div class="todo-title-wrapper d-flex justify-content-between mb-50">
+                                                    <div class="todo-title-area d-flex align-items-center">
+                                                        <div class="title-wrapper d-flex">
+                                                            {% if note.to_dict.trashed == True %}
+                                                            <h6 class="todo-title mt-50 mx-50">{{note.to_dict.notBaslik}}</h6>
+                                                            <p>[DELETED]</p>
+                                                            {% else %}
+                                                            <h6 class="todo-title mt-50 mx-50">{{note.to_dict.notBaslik}}</h6>
+                                                            {% endif %}
+
+                                                        </div>
+                                                        <div class="chip-wrapper">
+                                                            {% if note.to_dict.labels is None %}
+
+                                                            {% endif %}
+
+                                                            {%  if note.to_dict.labels.0 == 'on' %}
+                                                            <div class="chip mb-0">
+                                                                <div class="chip-body">
+                                                                    <span class="chip-text" data-value="Frontend"><span class="bullet bullet-primary bullet-xs"></span>Frontend</span>
+                                                                </div>
+                                                            </div>
+                                                            {% endif %}
+
+                                                            {% if note.to_dict.labels.1 == 'on' %}
+                                                            <div class="chip mb-0">
+                                                                <div class="chip-body">
+                                                                    <span class="chip-text" data-value="Backend"><span class="bullet bullet-warning bullet-xs"></span> Backend</span>
+                                                                </div>
+                                                            </div>
+                                                            {%  endif %}
+
+                                                            {% if note.to_dict.labels.2 == 'on' %}
+                                                            <div class="chip mb-0">
+                                                                <div class="chip-body">
+                                                                    <span class="chip-text" data-value="Doc"><span class="bullet bullet-success bullet-xs"></span> Doc</span>
+                                                                </div>
+                                                            </div>
+                                                        {% endif %}
+                                                        {% if note.to_dict.labels.3 == 'on' %}
+                                                        <div class="chip mb-0">
+                                                                <div class="chip-body">
+                                                                    <span class="chip-text" data-value="Doc"><span class="bullet bullet-danger bullet-xs"></span> Bug</span>
+                                                                </div>
+                                                            </div>
+                                                        {% endif %}
+                                                        </div>
+                                                    </div>
+                                                    <form method="POST">
+                                                        {% csrf_token %}
+                                                    <div class="float-right todo-item-action d-flex">
+                                                        <button type="submit" name="nottamam" value="{{ forloop.counter0 }}" class="todo-item-info btn" style="padding: 12px;"><i class="fa fa-check-circle"></i></button>
+                                                        <button type="submit" name="notsil" value="{{ forloop.counter0 }}" class="todo-item-info btn" style="padding: 12px;"><i class="feather icon-trash"></i></button>
+                                                    </div>
+                                                    </form>
+                                                </div>
+                                                <p class="todo-desc truncate mb-0">{{ note.to_dict.notIcerik }}</p>
+                                                {#% endif %#}
+                                            </li>
+
+                                            {% endfor %}
+
+                                        </ul>
+
+                                    <div class="ps__rail-x" style="left: 0px; bottom: 0px;"><div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div></div><div class="ps__rail-y" style="top: 0px; height: 494px; right: 0px;"><div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 379px;"></div></div></div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Modal -->
+                        <div class="modal fade" id="editTaskModal" tabindex="-1" role="dialog" aria-labelledby="editTodoTask" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-sm" role="document">
+
+                                   <div class="modal-content">
+                                       <form action="" method="POST">
+                                        {% csrf_token %}
+                                        <section class="todo-form">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="editTodoTask">Edit Task</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">×</span>
+                                                </button>
+                                            </div>
+
+                                            <div class="modal-body">
+
+                                                <div class="todo-item-action ml-auto">
+                                                    <div class="dropdown todo-item-label">
+                                                        <i class="dropdown-toggle mr-0 mb-1 feather icon-tag" id="todoEditLabel" data-toggle="dropdown">
+                                                        </i>
+                                                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="todoEditLabel">
+                                                            <div class="dropdown-item">
+                                                                <div class="vs-checkbox-con">
+                                                                    <input type="checkbox" name="frontend" data-color="primary" data-value="Frontend">
+                                                                <span class="vs-checkbox">
+                                                                    <span class="vs-checkbox--check">
+                                                                        <i class="vs-icon feather icon-check mr-0"></i>
+                                                                    </span>
+                                                                </span>
+                                                                <span>Frontend</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="dropdown-item">
+                                                            <div class="vs-checkbox-con">
+                                                                <input type="checkbox" name="backend" data-color="warning" data-value="Backend">
+                                                                <span class="vs-checkbox">
+                                                                    <span class="vs-checkbox--check">
+                                                                        <i class="vs-icon feather icon-check mr-0"></i>
+                                                                    </span>
+                                                                </span>
+                                                                <span>Backend</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="dropdown-item">
+                                                            <div class="vs-checkbox-con">
+                                                                <input type="checkbox" name="doc" data-color="success" data-value="Doc">
+                                                                <span class="vs-checkbox">
+                                                                    <span class="vs-checkbox--check">
+                                                                        <i class="vs-icon feather icon-check mr-0"></i>
+                                                                    </span>
+                                                                </span>
+                                                                <span>Doc</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="dropdown-item">
+                                                            <div class="vs-checkbox-con">
+                                                                <input type="checkbox" name="bugs" data-color="danger" data-value="Bug">
+                                                                <span class="vs-checkbox">
+                                                                    <span class="vs-checkbox--check">
+                                                                        <i class="vs-icon feather icon-check mr-0"></i>
+                                                                    </span>
+                                                                </span>
+                                                                <span>Bug</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <fieldset class="form-group">
+                                                    <input name="notbaslikupdate" type="text" class="edit-todo-item-title form-control" placeholder="Title">
+                                                </fieldset>
+                                                <fieldset class="form-group">
+                                                    <textarea name="noticerikupdate" class="edit-todo-item-desc form-control" rows="3" placeholder="Add description"></textarea>
+                                                </fieldset>
+                                            <div class="modal-footer">
+                                                <fieldset class="form-group position-relative has-icon-left mb-0">
+                                                    <button type="submit" name="updatenot" class="btn btn-primary update-todo-item waves-effect waves-light" data-dismiss="modal"><i class="feather icon-edit d-block d-lg-none"></i>
+                                                        <span class="d-none d-lg-block">Update</span></button>
+                                                </fieldset>
+                                                <fieldset class="form-group position-relative has-icon-left mb-0">
+                                                    <button type="submit" class="btn waves-effect waves-light" data-dismiss="modal"><i class="feather icon-x d-block d-lg-none"></i>
+                                                        <span class="d-none d-lg-block">Cancel</span></button>
+                                                </fieldset>
+                                            </div>
+                                        </div>
+                                    </section>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+    </div>
+
+
+<footer class="footer footer-static footer-light">
+        <p class="clearfix blue-grey lighten-2 mb-0"><span class="float-md-left d-block d-md-inline-block mt-25">COPYRIGHT &copy; 2020<a class="text-bold-800 grey darken-2" href="http://canilgu.com" target="_blank">devilgu,</a>All rights Reserved</span><span class="float-md-right d-none d-md-block">Hand-crafted & Made with<i class="feather icon-heart pink"></i></span>
+            <button class="btn btn-primary btn-icon scroll-top" type="button"><i class="feather icon-arrow-up"></i></button>
+        </p>
+    </footer>
+
+<script src="{% static 'app-assets/vendors/js/vendors.min.js' %}"></script>
+<script src="{% static 'app-assets/js/core/app-menu.js' %}"></script>
+<script src="{% static 'app-assets/js/core/app.js' %}"></script>
+<script src="{% static 'app-assets/js/scripts/components.js' %}"></script>
+<script src="{% static 'app-assets/js/scripts/pages/app-todo.js' %}"></script>
+
+<script src="{% static 'app-assets/vendors/js/extensions/sweetalert2.all.min.js' %}"></script>
+
+
+</body>
+</html>
